@@ -1,0 +1,35 @@
+body {
+  overflow: hidden;
+}
+.content {
+  padding: $long-24;
+  overflow-y: auto;
+  height: calc(100vh - 90px);
+}
+.plan-style {
+  width: 70px;
+  height: $long-24;
+  border-radius: 4px;
+  color: $color-white;
+  text-align: center;
+}
+.to-status-style {
+  border: 1px solid rgb(245, 193, 60);
+  background: rgb(245, 193, 60);
+}
+.do-status-style {
+  border: 1px solid #267dff;
+  background: #267dff;
+}
+.finish-status-style {
+  border: 1px solid rgb(47, 205, 110);
+  background: rgb(47, 205, 110);
+}
+.save-tags-style {
+  border: 1px solid #f5c13c;
+  background: #f5c13c;
+}
+.order-tags-style {
+  border: 1px solid #04b5d7;
+  background: #04b5d7;
+}

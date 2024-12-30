@@ -1,0 +1,70 @@
+$ope-color: #97c3bb;
+$num-color: #acc8dcf1;
+$dis-color: #aca5a5bf;
+
+$font-12: 12px;
+$font-14: 14px;
+$font-16: 16px;
+$font-18: 18px;
+$font-24: 24px;
+$font-28: 28px;
+$color-white: #fff;
+$color-gray: #f5f5f5;
+$color-primary: #267dff;
+$color-backround: #e8f5ff;
+$color-menu: #666666;
+$color-black: #000000;
+$color-text: #333333;
+$color-arrow: #999999;
+$color-border: #dddddd;
+$long-50: 50px;
+$long-24: 24px;
+$long-16: 16px;
+$long-12: 12px;
+$long-8: 8px;
+
+@mixin flex-row($justify: flex-start, $align: center) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+}
+@mixin flex-column($justify: flex-start) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify;
+}
+@mixin slcard($color: $color-white) {
+  background: $color;
+  border-radius: 4px;
+  padding: $long-8;
+}
+
+/*表格样式定制开始*/
+::v-deep .ant-table-thead > tr > th {
+  border-inline-end: 1px solid #f0f0f0;
+}
+::v-deep .ant-table-thead > tr > th:not(:last-child)::before {
+  width: 0 !important;
+}
+::v-deep .table-striped td {
+  background-color: rgba(38, 125, 255, 0.3);
+}
+::v-deep .ant-table-thead > tr > th {
+  color: $color-white;
+  background-color: $color-primary;
+  &:first-child {
+    border-radius: 0 !important;
+  }
+  &:last-child {
+    border-radius: 0 !important;
+  }
+}
+::v-deep .ant-table-tbody > tr > td {
+  border-bottom: 1px solid $color-primary !important;
+  border-left: 1px solid $color-primary;
+}
+::v-deep .ant-table-tbody > tr > td:last-child {
+  border-right: 1px solid $color-primary !important;
+}
+/*表格样式定制结束*/
