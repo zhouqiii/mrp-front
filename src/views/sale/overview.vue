@@ -1,7 +1,15 @@
 <template>
   <div>
     <Breadcrumb :routes="breadcrumb" />
-    <a-card>content......</a-card>
+    <a-card>
+      <div class="btn-groups">
+        <one-button>Default</one-button>
+        <one-button type="primary" disabled>Primary</one-button>
+        <one-button type="danger" plain>Danger</one-button>
+        <one-button type="success" icon="add">Success</one-button>
+        <one-button type="warning" round>Warning</one-button>
+      </div>
+    </a-card>
   </div>
 </template>
 <script setup lang="ts">
@@ -25,3 +33,8 @@ let breadcrumb: Imenu[] = reactive([
   },
 ])
 </script>
+<style lang="scss" scoped>
+.btn-groups {
+  @include flex-row();
+}
+</style>

@@ -11,7 +11,6 @@ export const drawStar = () => {
   // 创建画布
   const canvas = document.createElement('canvas')
   const starBox = document.getElementById('animation-demo')
-  console.log(starBox, '11111111111111111111')
   starBox!.appendChild(canvas)
   let ctx = canvas.getContext('2d')
 

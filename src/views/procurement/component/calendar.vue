@@ -54,6 +54,7 @@
 </template>
 <script lang="ts" setup>
 import { getNeighborDays, formatToDate } from '@/utils/dateUtil'
+// chinese-lunar-calendar安装后启动项目node_modules/chinese-lunar-calendar/src/lunar_calendar.js报错 把declare去掉
 import { getLunar } from 'chinese-lunar-calendar'
 import { getHoliday, getHolidayAll } from '@/api/holidays'
 import type { IDayHoliday } from '@/api/holidays'

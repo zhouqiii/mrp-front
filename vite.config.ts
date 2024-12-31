@@ -1,5 +1,6 @@
+import path from 'path'
 import { fileURLToPath, URL } from 'node:url'
-
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { loadEnv, ConfigEnv, UserConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import vue from '@vitejs/plugin-vue'
@@ -41,6 +42,24 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           enabled: true,
         },
         resolvers: [VueHooksPlusResolver()],
+      }),
+      // 配置svg
+      createSvgIconsPlugin({
+        iconDirs: [path.resolve(process.cwd(), 'src/assets/svgs')],
+        // 使用 svg 图标的格式（name为图片名称）
+        symbolId: 'icon-[name]',
+        customDomId: 'turing-planet-svgs', // 避免多项目互相影响
+        // 去掉.svg文件本身的fill属性值，使得svg颜色可以动态设置
+        svgoOptions: {
+          plugins: [
+            {
+              name: 'removeAttrs',
+              params: {
+                attrs: 'fill',
+              },
+            },
+          ],
+        },
       }),
     ],
     server: {

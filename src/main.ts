@@ -9,6 +9,10 @@ import './router/permission'
 import config from '@/config/index' // 全局配置
 import { reqIsSucceed } from '@/utils'
 import { useMessage } from '@/hooks/useMessage' // 全局提示
+import OneButton from '@/components/Button/index.vue'
+import SvgIcon from '@/components/Icon/index.vue'
+//svg插件需要配置代码
+import 'virtual:svg-icons-register'
 /**
  * 手动引入组件注册
  * 如果在意unplugin-vue-components插件的自动引入性能问题，可以考虑该方式
@@ -60,6 +64,10 @@ function render(props: any = {}) {
   instance.use(router)
   instance.component('Modal', NewModal)
   instance.component('Upload', NewUpload)
+  // 自定义组件
+  instance.component('OneButton', OneButton)
+  instance.component('SvgIcon', SvgIcon)
+
   for (let i in icons) {
     instance.component(i, icons[i])
   }
