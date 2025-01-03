@@ -3,7 +3,7 @@ import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } fro
 import { getToken, getRefreshToken } from './auth'
 import { useMessage } from '@/hooks/useMessage'
 import { API_PREFIX } from '../../config/constant'
-const { createMessage } = useMessage()
+const { createMessage, notification } = useMessage()
 
 enum RequestEnums {
   TIMEOUT = 10000,

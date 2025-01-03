@@ -1,12 +1,12 @@
 @import './variables.scss';
 :export {
-  headheight: $long-50;
-  long24: $long-24;
-  long12: $long-12;
-  long8: $long-8;
-  font18: $font-18;
-  font24: $font-24;
-  font28: $font-28;
-  colorblck: $color-black;
-  colorArrow: $color-arrow;
+  headheight: $size-normal-1;
+  long24: $size-small-2;
+  long12: $size-mini-4;
+  long8: $size-mini-5;
+  font18: $size-mini-1;
+  font24: $size-small-2;
+  font28: $size-small-1;
+  colorblck: $color-text-black;
+  colorArrow: $color-text-icon;
 }

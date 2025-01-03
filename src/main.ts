@@ -1,5 +1,5 @@
 import './assets/main.css'
-import '@/styles/common.scss'
+import '@/styles/index.scss'
 import 'ant-design-vue/dist/reset.css'
 import './public-path'
 import * as Icons from '@ant-design/icons-vue'

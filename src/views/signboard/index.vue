@@ -157,21 +157,21 @@ onMounted(() => getBarChartData())
 <style module lang="scss" src="@/styles/export.scss"></style>
 <style lang="scss" scoped>
 .signboard {
-  // padding: $long-16 $long-24;
+  // padding: $size-mini-2 $size-small-2;
   .condition {
     @include slcard;
     @include flex-row();
-    margin-bottom: $long-24;
+    margin-bottom: $size-small-2;
     .option {
       @include slcard;
       flex: 1;
       .title {
-        margin-bottom: $long-8;
+        margin-bottom: $size-mini-5;
       }
       .btns {
         @include flex-row();
         ::v-deep .ant-btn:not(:last-child) {
-          margin-right: $long-8;
+          margin-right: $size-mini-5;
         }
         ::v-deep .ant-btn {
           border-radius: 4px;
@@ -187,14 +187,14 @@ onMounted(() => getBarChartData())
     @include slcard;
     .over {
       @include flex-row();
-      margin-bottom: $long-24;
+      margin-bottom: $size-small-2;
     }
     .detail {
       .over {
-        margin-top: $long-12;
+        margin-top: $size-mini-4;
         .chart {
           width: 45%;
-          @include slcard($color-gray);
+          @include slcard($color-bg1);
         }
       }
     }

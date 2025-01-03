@@ -206,17 +206,17 @@ const nextMounth = () => {
 <style module lang="scss" src="@/styles/export.scss"></style>
 <style lang="scss" scoped>
 $color-featival: #ed4014;
-@mixin border($color: $color-arrow, $radius: 5px) {
+@mixin border($color: $color-text-icon, $radius: 5px) {
   border: 2px solid $color;
   border-radius: $radius;
 }
 
 .dis-arrow {
-  color: $color-arrow !important;
+  color: $color-text-icon !important;
   cursor: not-allowed;
 }
 .has-arrow {
-  color: $color-black;
+  color: $color-text-black;
   cursor: pointer;
 }
 .YSPB {
@@ -228,9 +228,9 @@ $color-featival: #ed4014;
     // line-height: 110px;
     text-align: center;
     background-color: $color-white;
-    font-size: $font-16;
+    font-size: $size-mini-2;
     font-weight: bold;
-    color: $color-black;
+    color: $color-text-black;
     border-bottom: 1px solid #ddd;
     padding: 10px 0px;
   }
@@ -238,20 +238,20 @@ $color-featival: #ed4014;
   .banner {
     @include flex-row(space-between);
     background-color: $color-white;
-    font-size: $font-16;
+    font-size: $size-mini-2;
     font-weight: bold;
-    padding: 20px $long-24;
+    padding: 20px $size-small-2;
     .right {
       flex: 2;
       @include flex-row(space-between);
       .work {
         font-size: 14px;
-        color: $color-menu;
+        color: $color-text-base;
       }
       span {
         display: inline-block;
-        margin: 0 $long-24;
-        color: $color-black;
+        margin: 0 $size-small-2;
+        color: $color-text-black;
       }
     }
     .left {
@@ -263,7 +263,7 @@ $color-featival: #ed4014;
 
   .cander {
     background-color: $color-white;
-    padding: 0 $long-24 $long-24;
+    padding: 0 $size-small-2 $size-small-2;
 
     .week {
       height: 62px;
@@ -274,7 +274,7 @@ $color-featival: #ed4014;
       .box {
         /* 每个项占宽度的 14% */
         width: 14.285714285714286%;
-        font-size: $font-14;
+        font-size: $size-mini-3;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -289,7 +289,7 @@ $color-featival: #ed4014;
         opacity: 0.4;
       }
       .days1 {
-        padding-top: $long-8;
+        padding-top: $size-mini-5;
         width: 14.285714285714286%;
         display: flex;
         align-items: center;
@@ -298,7 +298,7 @@ $color-featival: #ed4014;
           padding: 10px 14px;
           position: relative;
           text-align: center;
-          color: $color-black;
+          color: $color-text-black;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -310,15 +310,15 @@ $color-featival: #ed4014;
           }
           .t1 {
             display: inline-block;
-            font-size: $font-14;
-            color: $color-text;
+            font-size: $size-mini-3;
+            color: $color-text-main;
             line-height: 14px;
           }
 
           .t2 {
             display: block;
             font-size: 12px;
-            color: $color-menu;
+            color: $color-text-base;
             line-height: 18px;
           }
 
@@ -359,7 +359,7 @@ $color-featival: #ed4014;
         .days-shift {
           background: rgba(221, 221, 221, 0.4);
           .t1 {
-            color: $color-text;
+            color: $color-text-main;
           }
         }
 

@@ -79,7 +79,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         // 定义全局 SCSS 变量
         scss: {
           javascriptEnabled: true,
-          additionalData: `@import "@/styles/variables.scss";`,
+          additionalData: `
+            @import "@/styles/variables.scss";
+            @import "@/styles/mixins.scss";
+          `,
         },
       },
     },

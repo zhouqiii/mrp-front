@@ -54,13 +54,13 @@ const detailList = reactive<StatisticItem[]>([
   @include flex-row();
   width: 100%;
   .static-card {
-    @include slcard($color-gray);
+    @include slcard($color-bg1);
     @include flex-column();
     height: 130px;
     text-align: center;
     flex: 1;
     &:not(:last-child) {
-      margin-right: $long-8;
+      margin-right: $size-mini-5;
     }
     .number {
       @include flex-row(center, center);

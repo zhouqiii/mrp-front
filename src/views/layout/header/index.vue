@@ -21,11 +21,11 @@ const logo = ref<string>(logoImg)
   left: 0;
   width: 100%;
   z-index: 6;
-  height: $long-50;
+  height: $size-normal-1;
   .navs-left {
     display: flex;
     flex: 4;
-    height: $long-50;
+    height: $size-normal-1;
     .logo {
       display: inline-block;
       text-align: left;

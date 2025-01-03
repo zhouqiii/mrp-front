@@ -5,6 +5,7 @@ import { InfoCircleFilled, CheckCircleFilled, CloseCircleFilled } from '@ant-des
 
 import type { NotificationArgsProps, ConfigProps } from 'ant-design-vue/lib/notification'
 import { isString } from '@/utils/is'
+import myMessage from '@/components/Message/index.js'
 
 // 手动引入 message样式
 import 'ant-design-vue/es/message/style'
@@ -125,6 +126,7 @@ notification.config({
 export function useMessage() {
   return {
     createMessage: Message,
+    myMessage: myMessage,
     notification: notification as NotifyApi,
     createConfirm: createConfirm,
     createSuccessModal,

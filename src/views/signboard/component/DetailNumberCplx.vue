@@ -58,7 +58,7 @@ const imgList = reactive<string[]>([blockImg, contractImg, nodeImg, tradingImg])
   grid-template-columns: 1fr 1fr;
   gap: 21px;
   width: 100%;
-  margin-top: $long-12;
+  margin-top: $size-mini-4;
   .static-card {
     &:first-child {
       @include slcard(linear-gradient(90deg, rgb(67, 148, 255) 0%, rgb(96, 187, 253) 100%));
@@ -77,12 +77,12 @@ const imgList = reactive<string[]>([blockImg, contractImg, nodeImg, tradingImg])
     .card-text {
       @include flex-column();
       color: $color-white;
-      margin-left: $long-8;
+      margin-left: $size-mini-5;
       .number {
         @include flex-row(flex-start, flex-start);
         flex: 3;
         line-height: 22px;
-        margin-bottom: $long-12;
+        margin-bottom: $size-mini-4;
       }
     }
   }

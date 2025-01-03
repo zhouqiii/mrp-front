@@ -121,7 +121,7 @@ watch(
 </script>
 <style lang="scss" scoped>
 ::v-deep .ant-tabs-tab-active {
-  background: $color-backround !important;
+  background: $color-primary-plain !important;
 }
 ::v-deep .ant-tabs {
   background: $color-white;

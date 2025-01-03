@@ -41,7 +41,7 @@ const marginLeft = computed(() => (application.siderCollapse ? '80px' : '200px')
 }
 
 .lay-below {
-  padding-top: $long-50;
+  padding-top: $size-normal-1;
   .lay-below-right {
     position: relative;
     overflow: hidden;

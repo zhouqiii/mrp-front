@@ -1,70 +1,35 @@
-$ope-color: #97c3bb;
-$num-color: #acc8dcf1;
-$dis-color: #aca5a5bf;
-
-$font-12: 12px;
-$font-14: 14px;
-$font-16: 16px;
-$font-18: 18px;
-$font-24: 24px;
-$font-28: 28px;
-$color-white: #fff;
-$color-gray: #f5f5f5;
-$color-primary: #267dff;
-$color-backround: #e8f5ff;
-$color-menu: #666666;
-$color-black: #000000;
-$color-text: #333333;
-$color-arrow: #999999;
+// 文字颜色
+$color-text-base: #666666;
+$color-text-black: #000000;
+$color-text-main: #333333;
+$color-text-icon: #999999;
+// 辅助色
+$color-success: #00a870;
+$color-error: #f74b4d;
+$color-warn: #f58916;
+$color-info: #918c8c;
+$color-primary: #0062b0;
+$color-success-plain: #c4f1e2;
+$color-error-plain: #ffb0b1;
+$color-warn-plain: #fde7cf;
+$color-info-plain: #ebeef5;
+$color-primary-plain: #e8f5ff;
+// 边框颜色
 $color-border: #dddddd;
-$long-50: 50px;
-$long-24: 24px;
-$long-16: 16px;
-$long-12: 12px;
-$long-8: 8px;
+// 常规颜色
+$color-bg1: #f5f5f5;
+$color-white: #ffffff;
+$color-base: #0f80d6;
 
-@mixin flex-row($justify: flex-start, $align: center) {
-  display: flex;
-  flex-direction: row;
-  justify-content: $justify;
-  align-items: $align;
-}
-@mixin flex-column($justify: flex-start) {
-  display: flex;
-  flex-direction: column;
-  justify-content: $justify;
-}
-@mixin slcard($color: $color-white) {
-  background: $color;
-  border-radius: 4px;
-  padding: $long-8;
-}
-
-/*表格样式定制开始*/
-::v-deep .ant-table-thead > tr > th {
-  border-inline-end: 1px solid #f0f0f0;
-}
-::v-deep .ant-table-thead > tr > th:not(:last-child)::before {
-  width: 0 !important;
-}
-::v-deep .table-striped td {
-  background-color: rgba(38, 125, 255, 0.3);
-}
-::v-deep .ant-table-thead > tr > th {
-  color: $color-white;
-  background-color: $color-primary;
-  &:first-child {
-    border-radius: 0 !important;
-  }
-  &:last-child {
-    border-radius: 0 !important;
-  }
-}
-::v-deep .ant-table-tbody > tr > td {
-  border-bottom: 1px solid $color-primary !important;
-  border-left: 1px solid $color-primary;
-}
-::v-deep .ant-table-tbody > tr > td:last-child {
-  border-right: 1px solid $color-primary !important;
-}
-/*表格样式定制结束*/
+// 尺寸变量
+// normal
+$size-normal-1: 50px;
+// small
+$size-small-1: 28px;
+$size-small-2: 24px;
+// mini
+$size-mini-1: 18px;
+$size-mini-2: 16px;
+$size-mini-3: 14px;
+$size-mini-4: 12px;
+$size-mini-5: 8px;

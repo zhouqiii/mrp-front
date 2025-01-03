@@ -4,7 +4,7 @@
       :class="[
         'one-button',
         `one-btn-${type}`,
-        disabled ? `one-btn-${type}-disabled` : '',
+        disabled ? `is-disabled` : '',
         plain ? 'is-plain' : '',
         round ? 'is-round' : '',
       ]"
@@ -35,38 +35,45 @@ const propsData = withDefaults(
 )
 </script>
 <style lang="scss" scoped>
-$color-plain: (
-  'primary': #0062b0,
-  'success': #00a870,
-  'danger': #f36c6e5e,
-  'warning': #f58916,
-);
+// 基础按钮背景色
 $button-background-colors: (
-  'primary': #0062b0,
-  'success': #00a870,
-  'danger': #f74b4d,
-  'warning': #f58916,
+  'primary': $color-primary,
+  'success': $color-success,
+  'danger': $color-error,
+  'warning': $color-warn,
 );
+// 基础按钮hover背景色
 $button-hover-colors: (
-  'primary': #0f80d6,
-  'success': #00a870,
-  'danger': #f74b4d,
-  'warning': #f58916,
+  'primary': $color-base,
+  'success': $color-success,
+  'danger': $color-error,
+  'warning': $color-warn,
 );
+// 基础按钮active背景色
 $button-active-colors: (
   'primary': #004487,
-  'success': #00a870,
-  'danger': #f74b4d,
-  'warning': #f58916,
+  'success': $color-success,
+  'danger': $color-error,
+  'warning': $color-warn,
 );
+// 基础按钮disabled背景色
 $button-disabled-colors: (
   'primary': #84b4de,
-  'success': #00a870,
-  'danger': #f74b4d,
-  'warning': #f58916,
+  'success': $color-success,
+  'danger': $color-error,
+  'warning': $color-warn,
 );
-$primaryHover: #0f80d6;
-
+// 朴素按钮背景色
+$color-plain: (
+  'primary': $color-primary-plain,
+  'success': $color-success-plain,
+  'danger': $color-error-plain,
+  'warning': $color-warn-plain,
+);
+@mixin color-set($color) {
+  background-color: $color;
+  border-color: $color;
+}
 .one-button {
   height: 32px;
   padding: 4px 15px;
@@ -91,10 +98,10 @@ $primaryHover: #0f80d6;
 // 不同按钮的背景色
 @each $button-type, $button-color in $button-background-colors {
   .one-btn-#{$button-type} {
-    background-color: $button-color;
-    border-color: $button-color;
+    @include color-set($button-color);
     color: #ffffff;
   }
+  // plain状态下border和color和基础一致，写在这个遍历里
   .one-btn-#{$button-type}.is-plain {
     background-color: map-get($color-plain, $button-type);
     border-color: $button-color;
@@ -114,8 +121,7 @@ $primaryHover: #0f80d6;
 @each $button-type, $button-color in $button-hover-colors {
   .one-btn-#{$button-type} {
     &:hover {
-      border-color: $button-color;
-      background: $button-color;
+      @include color-set($button-color);
     }
   }
 }
@@ -123,33 +129,28 @@ $primaryHover: #0f80d6;
 @each $button-type, $button-color in $button-active-colors {
   .one-btn-#{$button-type} {
     &:active {
-      border-color: $button-color;
-      background: $button-color;
+      @include color-set($button-color);
     }
   }
 }
 // 不同按钮disabled状态下背景色、hover背景色和active背景色全置统一
 @each $button-type, $button-color in $button-disabled-colors {
-  .one-btn-#{$button-type}-disabled {
-    background-color: $button-color;
-    border-color: $button-color;
+  .one-btn-#{$button-type}.is-disabled {
+    @include color-set($button-color);
     cursor: not-allowed;
-    &:hover {
-      border-color: $button-color;
-      background: $button-color;
-    }
+    &:hover,
     &:active {
-      border-color: $button-color;
-      background: $button-color;
+      @include color-set($button-color);
     }
   }
 }
+// default 单独设置
 .one-btn-default {
-  background: #ffffff;
-  border-color: #d9d9d9;
+  background: $color-white;
+  border-color: $color-border;
   &:hover {
-    border-color: $primaryHover;
-    color: $primaryHover;
+    border-color: $color-base;
+    color: $color-base;
   }
 }
 </style>

@@ -50,18 +50,18 @@ const currentMenus = computed(
 <style module lang="scss" src="@/styles/export.scss"></style>
 <style lang="scss" scoped>
 .menu {
-  font-size: $font-14;
-  color: $color-menu;
+  font-size: $size-mini-3;
+  color: $color-text-base;
   .divider-line {
     margin: 0 8px;
     color: rgba(0, 0, 0, 0.45);
   }
 }
 .breadcrum {
-  font-size: $font-18;
+  font-size: $size-mini-1;
   font-weight: 600;
   line-height: 28px;
-  color: $color-black;
-  margin: $long-12 0;
+  color: $color-text-black;
+  margin: $size-mini-4 0;
 }
 </style>
