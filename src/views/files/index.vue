@@ -10,6 +10,7 @@
       :scroll="{ x: 1200 }"
       :actions="tableActions"
       :ifSelect="true"
+      :parameter="{ filePath: '' }"
       ref="tableRef"
     />
     <Modal v-bind="modalState" @cancel="handleCancel" @ok="handleOk">
@@ -86,7 +87,6 @@ const ifSelType = computed(() => (formModel.type ? true : false))
 // 获取表格子组件选中的项
 const getTableSel = async () => {
   const selFileList = tableRef.value.getSelectRows
-  console.log(selFileList, '111111111111')
 }
 onMounted(async () => {
   loading.value = true

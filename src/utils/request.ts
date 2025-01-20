@@ -15,7 +15,7 @@ enum RequestEnums {
 // baseURL
 
 const instance = axios.create({
-  baseURL: '', // API_PREFIX as string,
+  baseURL: '', // API_PREFIX as string, 因为这里要请求要代理到不同的地址，如/api和/openapi代理不同，所以baseURL不能统一
   timeout: RequestEnums.TIMEOUT as number,
   withCredentials: true,
 })

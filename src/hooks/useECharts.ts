@@ -48,6 +48,7 @@ export function useECharts(
         resizeFn()
       }, 30)
     }
+    legendselectchanged()
   }
 
   function setOptions(options: EChartsOption, clear = true) {
@@ -87,7 +88,53 @@ export function useECharts(
       }
     },
   )
+  const setSeries = (option: EChartsOption, seriesIndex: number, pos: number) => {
+    if (option.series instanceof Array) {
+      option.series[seriesIndex]!.data! = (
+        option.series[seriesIndex]!.data! as number[] | number[][]
+      ).map((val: number[] | number, i: number) => [
+        pos + i * 100,
+        val instanceof Array ? val[1] : val,
+      ])
+    }
+  }
+  // echarts图表图例点击事件-折柱混合时，修改折线拐点对齐位置
+  const legendselectchanged = () => {
+    chartInstance?.on('legendselectchanged', function (params: any) {
+      const option = getOptions.value
+      if (getOptions.value.title!.text == '销售目标达成率') {
+        const show = Object.entries(params.selected)
+          .filter((i) => i[0].indexOf('达成率') < 0)
+          .filter((i) => i[1])
+        const len = show.length
+        if (len == 0) {
+          setSeries(option, 2, 50)
+        } else if (len == 1) {
+          if (show[0][0] == '发车计划') {
+            setSeries(option, 2, 50)
+          } else {
+            if (option.series instanceof Array) {
+              option.series[0].xAxisIndex = 1
+            }
+            setSeries(option, 0, 30)
+            setSeries(option, 2, 70)
+          }
+        } else {
+          if (option.series instanceof Array) {
+            option.series[0].xAxisIndex = 0
+            option.series[0].data = (option.series[0]!.data! as number[][] | number[]).map(
+              (val: number[] | number) => (val instanceof Array ? val[1] : val),
+            )
+          }
 
+          setSeries(option, 2, 70)
+        }
+        chartInstance?.setOption({
+          series: option.series,
+        })
+      }
+    })
+  }
   tryOnUnmounted(() => {
     if (!chartInstance) return
     removeResizeFn()
@@ -107,5 +154,6 @@ export function useECharts(
     resize,
     echarts,
     getInstance,
+    chartInstance,
   }
 }

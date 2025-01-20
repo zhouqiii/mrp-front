@@ -133,20 +133,7 @@ export default defineComponent({
         totalKey: 'total', // 取值 data:{ data, total } 从 { 中开始 }
       },
     })
-    const dataSource = computed(
-      () =>
-        data?.value?.data || [
-          {
-            fileName: '11111111111111',
-            id: '2341',
-            status: '3',
-          },
-          {
-            fileName: '22222222222222',
-            id: '2222',
-          },
-        ],
-    )
+    const dataSource = computed(() => data?.value?.data || [])
     const hasBordered = computed(() => props.bordered ?? true)
     const pagination = computed(() => ({
       total: total.value,

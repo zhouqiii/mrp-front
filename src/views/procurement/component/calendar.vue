@@ -202,6 +202,7 @@ const nextMounth = () => {
   m.value = m.value == 12 ? 1 : m.value + 1
   getCurrentDays()
 }
+onMounted(() => getCurrentDays())
 </script>
 <style module lang="scss" src="@/styles/export.scss"></style>
 <style lang="scss" scoped>
@@ -221,9 +222,8 @@ $color-featival: #ed4014;
 }
 .YSPB {
   width: 100%;
-  height: 100%;
   background-color: #f8f8f8;
-
+  border: 1px solid $color-border;
   .title {
     // line-height: 110px;
     text-align: center;
@@ -263,8 +263,6 @@ $color-featival: #ed4014;
 
   .cander {
     background-color: $color-white;
-    padding: 0 $size-small-2 $size-small-2;
-
     .week {
       height: 62px;
       border-radius: 31px;

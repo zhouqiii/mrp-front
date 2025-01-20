@@ -14,3 +14,7 @@
   border-radius: 4px;
   padding: $size-mini-5;
 }
+
+@mixin bgColor($color) {
+  background-color: $color;
+}

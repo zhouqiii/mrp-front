@@ -24,7 +24,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
-    base: '/zqdemo/', // 这个要与主应用的micro-app.js中activeRule一致
+    base: process.env.NODE_ENV === 'production' ? '/zqiiidemo/micro/zqiiihtml/' : '/', // 这个要与主应用的micro-app.js中activeRule一致
     // plugins
     plugins: [
       vue(),

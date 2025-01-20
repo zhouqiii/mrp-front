@@ -26,11 +26,52 @@ export const accessRoutes: RouteRecordRaw[] = [
         name: 'procurement',
         component: () => import('@/views/procurement/index.vue'),
         meta: {
-          title: '采购',
+          title: '需求计划',
           icon: 'DollarOutlined',
           auth: ['procurement'],
           keepAlive: false,
         },
+      },
+      {
+        path: '/departure',
+        name: 'departure',
+        meta: {
+          title: '发车计划',
+          icon: 'PicCenterOutlined',
+          auth: ['departure'],
+        },
+        children: [
+          {
+            path: '/departure/customtable',
+            name: 'customtable',
+            meta: {
+              title: '表格动态配置列',
+              icon: 'PicCenterOutlined',
+              auth: ['departure'],
+            },
+            component: () => import('@/views/departure/customtable.vue'),
+          },
+          {
+            path: '/departure/formfillplan',
+            name: 'formfillplan',
+            meta: {
+              title: '填报表-行列按需展示',
+              icon: 'PicCenterOutlined',
+              auth: ['departure'],
+            },
+            component: () => import('@/views/departure/formfill.vue'),
+          },
+          {
+            path: '/departure/complexchart',
+            name: 'complexchart',
+            meta: {
+              title: '达成率-复杂图',
+              icon: 'PicCenterOutlined',
+              auth: ['departure'],
+            },
+            component: () => import('@/views/departure/complexchart.vue'),
+          },
+        ],
       },
       {
         path: '/sale',
@@ -60,6 +101,26 @@ export const accessRoutes: RouteRecordRaw[] = [
               auth: ['sale'],
             },
             component: () => import('@/views/sale/index.vue'),
+          },
+          {
+            path: '/sale/pdf',
+            name: 'salepdf',
+            meta: {
+              title: '文件测试1',
+              icon: 'PicCenterOutlined',
+              auth: ['sale'],
+            },
+            component: () => import('@/views/sale/pdfview.vue'),
+          },
+          {
+            path: '/sale/pdfcustomize',
+            name: 'salepdfcustomize',
+            meta: {
+              title: '文件测试2',
+              icon: 'PicCenterOutlined',
+              auth: ['sale'],
+            },
+            component: () => import('@/views/sale/pdfCustomize.vue'),
           },
         ],
       },

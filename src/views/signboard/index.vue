@@ -1,46 +1,47 @@
 <template>
   <div class="signboard">
-    <div class="condition">
-      <div class="option" :style="{ flex: 2 }">
-        <div class="title" style="font-weight: bold">计划状态</div>
-        <div class="btns">
+    <div class="flex flex-row items-center justify-between mb-4 p-2 bg-white">
+      <div class="flex-1 rounded" :style="{ flex: 2 }">
+        <div class="text-l font-bold mb-2">计划状态</div>
+        <div class="flex flex-row items-center justify-between">
           <a-button
             v-for="item in statusList"
+            class="flex-1 mr-2 last:mr-0 rounded"
             :type="planStatus == item.value ? 'primary' : 'default'"
             @click="planStatus = item.value"
             >{{ item.label }}</a-button
           >
         </div>
       </div>
-      <div class="option">
-        <div class="title">生产计划名称</div>
-        <a-select ref="select" v-model:value="planName" class="sel">
+      <div class="flex-1 pl-4 rounded">
+        <div class="text-l mb-2">生产计划名称</div>
+        <a-select ref="select" v-model:value="planName" class="w-full">
           <a-select-option v-for="item in optionList" :value="item.value">{{
             item.label
           }}</a-select-option>
         </a-select>
       </div>
-      <div class="option">
-        <div class="title">计划完工日期</div>
-        <a-select ref="select" v-model:value="planName">
+      <div class="flex-1 rounded">
+        <div class="text-l mb-2">计划完工日期</div>
+        <a-select ref="select" v-model:value="planName" class="w-full">
           <a-select-option v-for="item in optionList" :value="item.value">{{
             item.label
           }}</a-select-option>
         </a-select>
       </div>
-      <div class="option">
-        <div class="title">销售订单名称</div>
-        <a-select ref="select" v-model:value="planName">
+      <div class="flex-1 rounded">
+        <div class="text-l mb-2">销售订单名称</div>
+        <a-select ref="select" v-model:value="planName" class="w-full">
           <a-select-option v-for="item in optionList" :value="item.value">{{
             item.label
           }}</a-select-option>
         </a-select>
       </div>
     </div>
-    <div class="board">
+    <div class="p-2 bg-white rounded">
       <a-tabs v-model:activeKey="activeKey">
-        <a-tab-pane key="statistic" tab="生产计划统计" class="statistic">
-          <div class="over">
+        <a-tab-pane key="statistic" tab="生产计划统计">
+          <div class="flex flex-row items-center justify-between mb-6">
             <div :style="{ flex: 1, marginRight: $style.long24 }">
               <h1 style="font-weight: 700">实时数据总览</h1>
               <DetailNumberCplx />
@@ -52,14 +53,14 @@
           </div>
           <TableBase />
         </a-tab-pane>
-        <a-tab-pane key="detail" tab="生产计划明细" force-render class="detail">
+        <a-tab-pane key="detail" tab="生产计划明细" force-render>
           <DetailNumberBase />
-          <div class="over">
-            <div :style="{ flex: 1, marginRight: $style.long12 }" class="chart">
+          <div class="flex mt-3">
+            <div class="flex-1 w-9/20 bg-white rounded p-2 mr-3">
               <h1 style="font-weight: 700">计划生产数量趋势</h1>
               <LineCharts :areaColor="areaColorNum" :series="speChartSeriesOption" />
             </div>
-            <div style="flex: 1" class="chart">
+            <div class="flex-1 w-9/20 bg-white rounded p-2">
               <h1 style="font-weight: 700">计划生产任务数量趋势</h1>
               <BarCharts :data="barChartData" v-if="activeKey == 'detail'" />
             </div>
@@ -155,49 +156,3 @@ const getBarChartData = async () => {
 onMounted(() => getBarChartData())
 </script>
 <style module lang="scss" src="@/styles/export.scss"></style>
-<style lang="scss" scoped>
-.signboard {
-  // padding: $size-mini-2 $size-small-2;
-  .condition {
-    @include slcard;
-    @include flex-row();
-    margin-bottom: $size-small-2;
-    .option {
-      @include slcard;
-      flex: 1;
-      .title {
-        margin-bottom: $size-mini-5;
-      }
-      .btns {
-        @include flex-row();
-        ::v-deep .ant-btn:not(:last-child) {
-          margin-right: $size-mini-5;
-        }
-        ::v-deep .ant-btn {
-          border-radius: 4px;
-          flex: 1;
-        }
-      }
-      ::v-deep .ant-select {
-        width: 100%;
-      }
-    }
-  }
-  .board {
-    @include slcard;
-    .over {
-      @include flex-row();
-      margin-bottom: $size-small-2;
-    }
-    .detail {
-      .over {
-        margin-top: $size-mini-4;
-        .chart {
-          width: 45%;
-          @include slcard($color-bg1);
-        }
-      }
-    }
-  }
-}
-</style>

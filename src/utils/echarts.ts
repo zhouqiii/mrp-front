@@ -10,6 +10,7 @@ import {
   TooltipComponent,
   GridComponent,
   LegendComponent,
+  ToolboxComponent,
 } from 'echarts/components'
 // 标签自动布局，全局过渡动画等特性
 import { UniversalTransition } from 'echarts/features'
@@ -27,6 +28,7 @@ echarts.use([
   GridComponent,
   TooltipComponent,
   UniversalTransition,
+  ToolboxComponent,
 ])
 
 export default echarts

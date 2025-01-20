@@ -11,6 +11,7 @@ import { reqIsSucceed } from '@/utils'
 import { useMessage } from '@/hooks/useMessage' // 全局提示
 import OneButton from '@/components/Button/index.vue'
 import SvgIcon from '@/components/Icon/index.vue'
+import './index.css'
 //svg插件需要配置代码
 import 'virtual:svg-icons-register'
 /**
@@ -43,6 +44,8 @@ import {
   Spin,
   Tabs,
   Table as AntdTable,
+  Drawer,
+  Switch,
 } from 'ant-design-vue'
 
 import { createApp } from 'vue'
@@ -98,6 +101,8 @@ function render(props: any = {}) {
     .use(Tooltip)
     .use(Modal)
     .use(Upload)
+    .use(Drawer)
+    .use(Switch)
   instance?.mount(container ? container.querySelector('#base') : '#base')
 }
 renderWithQiankun({

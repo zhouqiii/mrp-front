@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <button
+   <button
       :class="[
         'one-button',
         `one-btn-${type}`,
@@ -14,7 +13,6 @@
         <slot></slot>
       </span>
     </button>
-  </div>
 </template>
 <script setup lang="ts">
 const propsData = withDefaults(

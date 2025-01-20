@@ -19,8 +19,7 @@ export const API_OPENAPI_TARGET_URL = 'https://oneapi.coderbox.cn/openapi'
 // 获取法定节假日可连续标注接口的代理api前缀
 export const API_TIMER_URL = '/holiday'
 export const API_TIMER_TARGET_URL = 'http://timor.tech/api/holiday'
-// 张柯 http://192.168.0.138 李可可：(309) http://192.168.3.156:8281) (312)http://192.168.0.109  李建：192.168.0.111:8280
-export const API_TARGET_URL = 'http://localhost:5173' // http://192.168.3.156:8281
+export const API_TARGET_URL = 'http://10.189.91.107:8280' // http://192.168.3.156:8281
 
 // 本地 test
 export const MOCK_API_BASE_URL = '/mock/api'

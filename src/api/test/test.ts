@@ -1,11 +1,11 @@
-import type { ReqParamsDetail, ResData, ReqParams } from './model.d.ts'
+import type { ReqParamsDetail, ResData, ReqParams, ReqColumn } from './model.d.ts'
 import { get, post } from '@/utils/request.js'
 import qs from 'qs'
 
 const qsOption = {
   encode: false,
 }
-const qssl = (parObj) => {
+const qssl = (parObj: any) => {
   let param = ''
   const keysList = Object.keys(parObj)
   keysList.forEach((item, index) => {
@@ -14,9 +14,9 @@ const qssl = (parObj) => {
   return param
 }
 enum URL {
-  overview = '/result/forecastList', // 销售预测表格请求地址
-  forecast = '/result/forecast', // 销售预测入库
-  featureurl = '/original/fileList',
+  overview = '/api/result/forecastList', // 销售预测表格请求地址
+  forecast = '/api/result/forecast', // 销售预测入库
+  featureurl = '/api/original/fileList',
 }
 
 const overviewlist = async (data: ReqParamsDetail) => {
@@ -31,4 +31,11 @@ const forecast = async (data: Array<Record<string, any>>) =>
 const featuredata = async (data: ReqParams) => {
   return get<ResData>({ url: `${URL.featureurl}?${qs.stringify(data)}`, data })
 }
-export default { overviewlist, forecast, featuredata }
+// 动态表格获取表格设置数据
+const getcolumns = async (data: ReqColumn) => {
+  return get<ResData>({
+    url: `${URL.overview}?${qs.stringify(data)}`,
+    data,
+  })
+}
+export default { overviewlist, forecast, featuredata, getcolumns }

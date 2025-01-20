@@ -1,7 +1,3 @@
-export interface ReqParams {
-  limit: number
-  page: number
-}
 // 接口返回 基本通用
 export interface ResData<T = Array> {
   code: number
@@ -16,4 +12,12 @@ export interface ReqParamsDetail extends ReqParams {
 }
 interface MyObj {
   [key: string]: any
+}
+export interface ReqParams extends MyObj {
+  limit: number
+  page: number
+}
+
+export interface ReqColumn {
+  type: string
 }

@@ -2,9 +2,11 @@ body {
   overflow: hidden;
 }
 .content {
-  padding: $size-small-2;
+  margin: $size-small-2 0 $size-small-2 $size-small-2;
+  background-color: $color-white;
   overflow-y: auto;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 140px);
+  padding: $size-mini-1;
 }
 .plan-style {
   width: 70px;
@@ -40,9 +42,6 @@ body {
 ::v-deep .ant-table-thead > tr > th:not(:last-child)::before {
   width: 0 !important;
 }
-::v-deep .table-striped td {
-  background-color: rgba(38, 125, 255, 0.3);
-}
 ::v-deep .ant-table-thead > tr > th {
   color: $color-white;
   background-color: $color-primary;
@@ -61,3 +60,55 @@ body {
   border-right: 1px solid $color-primary !important;
 }
 /*表格样式定制结束*/
+.calendar-week {
+  @include bgColor($color-week);
+}
+.calendar-festival {
+  @include bgColor($color-festival);
+}
+.calendar-shutdown {
+  @include bgColor($color-shutdown);
+}
+/* 全局滚动条样式*/
+::-webkit-scrollbar {
+  width: 9px !important;
+  /* 对垂直流动条有效 */
+  height: 9px !important;
+  /* 对水平流动条有效 */
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+  // color: #fff;
+  box-shadow: inset 0 0 5px rgb(222, 226, 231);
+  background: rgb(222, 226, 231);
+  background-color: rgb(147, 145, 145) !important;
+}
+
+::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow: inset 0 0 5px #eef0f5;
+  border-radius: 0;
+  background: #eef0f5;
+}
+/*
+  popconfirm 开始
+  样式定制-不显示title和icon部分 边距重设
+*/
+.popconfirmstyle > .ant-popover-content > .ant-popover-inner > .ant-popover-inner-content {
+  .ant-popconfirm-message {
+    display: none;
+  }
+  .ant-popconfirm-description {
+    margin-left: 8px;
+  }
+}
+/*
+  popconfirm 结束
+*/
+/*
+  表格特殊行颜色设置
+*/
+.key-add-color {
+  color: $color-base;
+}
