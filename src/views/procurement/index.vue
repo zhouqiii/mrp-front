@@ -1,24 +1,26 @@
 <template>
-  <div ref="scrollContainer" @scroll="(e) => run(e)" class="content">
-    <NewCalendar
-      :style="{
-        width: '50%',
-        marginBottom: $style.long24,
-      }"
-    />
-    <div class="plan">
-      <div class="head">
-        <span>上班日历</span>
-        <div class="legend">
-          <div v-for="item in legendEnum" class="item">
-            <div :class="['item-box', item.flag]"></div>
-            <span>{{ item.lable }}</span>
+  <div ref="scrollContainer" @scroll="(e) => run(e)" class="p-6">
+    <div class="w-1/2 mb-6">
+      <NewCalendar />
+    </div>
+    <div>
+      <div class="flex flex-row justify-between align-middle my-4 mx-0">
+        <span class="text-base font-bold">上班日历</span>
+        <div class="flex flex-row justify-start align-middle">
+          <div v-for="item in legendEnum" class="flex flex-row justify-start align-middle">
+            <div
+              :class="[
+                'h-4.5 w-4.5 border-1 border-solid border-slate-borderbase mt-0 mr-2 mb-0 ml-6',
+                item.flag,
+              ]"
+            ></div>
+            <span class="text-sm font-normal">{{ item.lable }}</span>
           </div>
         </div>
       </div>
-      <div class="calendar">
+      <div class="flex flex-row justify-start flex-wrap">
         <template v-for="item in productLineList">
-          <MarkCalendar :dateObj="item" class="item" />
+          <MarkCalendar :dateObj="item" class="spe-item flex-auto mt-0 mr-4 mb-4 ml-0" />
         </template>
       </div>
     </div>
@@ -31,6 +33,7 @@ import { useScroll } from '@/stores/modules/scroll'
 import MarkCalendar from '@/views/procurement/component/workCalendar.vue'
 import type { IGetList } from './component/workCalendar.vue'
 import CalendarDetail from '@/views/procurement/component/workCalendarDetail.vue'
+import Steps from './component/Steps.vue'
 
 type Ikeys = 'lable' | 'flag'
 type ILegend = {
@@ -79,48 +82,10 @@ const productLineList = reactive<IGetList[]>([
 </script>
 <style module lang="scss" src="@/styles/export.scss"></style>
 <style lang="scss" scoped>
-.content {
-  padding: $size-small-2;
-  .plan {
-    .head {
-      margin: $size-mini-2 0;
-      @include flex-row(space-between);
-      span {
-        font-size: $size-mini-2;
-        font-weight: bolder;
-      }
-      .legend {
-        @include flex-row();
-        .item {
-          @include flex-row();
-          span {
-            font-size: $size-mini-3;
-            font-weight: normal;
-          }
-          .item-box {
-            height: $size-mini-1;
-            width: $size-mini-1;
-            border: 1px solid $color-border;
-            margin: 0 $size-mini-5 0 $size-small-2;
-          }
-        }
-      }
-    }
-    .calendar {
-      display: flex;
-      flex-flow: row wrap;
-      align-content: flex-start;
-      .item {
-        flex: 1;
-        margin: 0 $size-mini-2 $size-mini-2 0;
-        width: calc((100% - $size-mini-2 * 2) / 3);
-        min-width: calc((100% - $size-mini-2 * 2) / 3); // 加入这两个后每个item的宽度就生效了
-        max-width: calc((100% - $size-mini-2 * 2) / 3); // 加入这两个后每个item的宽度就生效了
-        &:nth-child(3n) {
-          margin-right: 0;
-        }
-      }
-    }
+.spe-item {
+  width: calc((100% - $size-mini-2 * 2) / 3);
+  &:nth-child(3n) {
+    margin-right: 0px;
   }
 }
 </style>

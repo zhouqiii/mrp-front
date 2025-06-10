@@ -92,7 +92,7 @@ export default defineComponent({
             {!state.collapsed && (
               <div class="my-sideMenu-sider_logo">
                 <Space align="center" class="link">
-                  <MessageOutlined :style="{fontSize: '20px', color: '#08c'}" />
+                  <MessageOutlined style="font-size: 20px;color: '#08c'" />
                   <Icon type="guanlipingtai" size="20px" align="0px" />
                   <span class="font16 nowrap">管理平台</span>
                 </Space>

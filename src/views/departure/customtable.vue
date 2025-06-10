@@ -1,7 +1,13 @@
 <template>
   <div class="tableSetting">
-    <div class="header">
-      <a-button type="primary" class="btn" ghost size="middle" @click="ifDrawer = !ifDrawer">
+    <div class="h-12 mb-[24px] tw-flex-row-end">
+      <a-button
+        type="primary"
+        class="tw-flex-row-center"
+        ghost
+        size="middle"
+        @click="ifDrawer = !ifDrawer"
+      >
         <template #icon>
           <svg-icon name="setting" width="1.2em" height="1.2em" class="icon" />
         </template>
@@ -16,6 +22,11 @@
       @resizeColumn="handleResizeColumn"
       :scroll="{ y: 'calc(100vh - 280px)' }"
     >
+      <template #headerCell="{ column }">
+        <template v-if="column.key === 'number'">
+          <span class="font-bold"> 序号 </span>
+        </template>
+      </template>
       <template #bodyCell="{ column, record, index }">
         <template v-if="column">
           <template v-if="column.key === 'number'">
@@ -176,11 +187,3 @@ watch(
 )
 onMounted(() => getTableSet())
 </script>
-<style lang="scss" scoped>
-.header {
-  height: 46px;
-  .btn {
-    @include flex-row(center);
-  }
-}
-</style>

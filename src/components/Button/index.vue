@@ -1,18 +1,18 @@
 <template>
-   <button
-      :class="[
-        'one-button',
-        `one-btn-${type}`,
-        disabled ? `is-disabled` : '',
-        plain ? 'is-plain' : '',
-        round ? 'is-round' : '',
-      ]"
-    >
-      <svg-icon v-if="icon" :name="icon" class="icon"></svg-icon>
-      <span>
-        <slot></slot>
-      </span>
-    </button>
+  <button
+    :class="[
+      'one-button',
+      `one-btn-${type}`,
+      disabled ? `is-disabled` : '',
+      plain ? 'is-plain' : '',
+      round ? 'is-round' : '',
+    ]"
+  >
+    <svg-icon v-if="icon" :name="icon" class="icon"></svg-icon>
+    <span>
+      <slot></slot>
+    </span>
+  </button>
 </template>
 <script setup lang="ts">
 const propsData = withDefaults(

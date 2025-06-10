@@ -10,13 +10,29 @@ import { usePermissioStoreWithOut } from '@/stores/modules/permission'
 const permissioStore = usePermissioStoreWithOut()
 const whiteList = ['/login'] // no redirect whitelist
 
-router.beforeEach(async (to: any, _, next) => {
+// 获取开始时间
+let startTime = Date.now()
+localStorage.setItem('time', JSON.stringify(startTime))
+
+router.beforeEach(async (to: any, from, next) => {
   const hasToken = getToken()
   if (hasToken) {
     // 已登录
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
+      let currentTime = Date.now()
+      const prePage_browTime = parseInt(String((currentTime - startTime) / 1000)) + 's'
+      // 用户由${String(from.name)}页面跳转到${to.name}
+      console.log(
+        `上报页面埋点: 停留时间-停留了${currentTime - startTime}毫秒,转换成秒数约为:${prePage_browTime}`,
+      )
+      console.log(`埋点key: ${String(from.name)}页面`)
+      console.log(`${to.name}页面浏览次数+1`)
+      //每次都要初始化一下 startTime
+      startTime = Date.now()
+      localStorage.setItem('time', JSON.stringify(startTime))
+
       //是否获取过用户信息
       const isGetUserInfo = permissioStore.getIsGetUserInfo
       if (isGetUserInfo) {

@@ -6,7 +6,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import SvgIcon from '@/components/Icon/index.vue'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 type IType = 'success' | 'error' | 'warn' | 'info'
 interface IMessage {
   type: IType

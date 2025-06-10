@@ -1,9 +1,9 @@
 <template>
   <div class="signboard">
-    <div class="flex flex-row items-center justify-between mb-4 p-2 bg-white">
+    <div class="tw-flex-row-between mb-4 p-2 bg-white">
       <div class="flex-1 rounded" :style="{ flex: 2 }">
         <div class="text-l font-bold mb-2">计划状态</div>
-        <div class="flex flex-row items-center justify-between">
+        <div class="tw-flex-row-between">
           <a-button
             v-for="item in statusList"
             class="flex-1 mr-2 last:mr-0 rounded"
@@ -41,7 +41,7 @@
     <div class="p-2 bg-white rounded">
       <a-tabs v-model:activeKey="activeKey">
         <a-tab-pane key="statistic" tab="生产计划统计">
-          <div class="flex flex-row items-center justify-between mb-6">
+          <div class="tw-flex-row-between mb-6">
             <div :style="{ flex: 1, marginRight: $style.long24 }">
               <h1 style="font-weight: 700">实时数据总览</h1>
               <DetailNumberCplx />

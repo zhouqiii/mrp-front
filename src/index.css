@@ -3,3 +3,25 @@
 @tailwind components;
 
 @tailwind utilities;
+
+/*抽取重用样式*/
+@layer components {
+  .tw-flex-row-between {
+    @apply flex flex-row items-center justify-between;
+  }
+  .tw-flex-row-start {
+    @apply flex flex-row items-center justify-start;
+  }
+  .tw-flex-row-center {
+    @apply flex flex-row items-center justify-center;
+  }
+  .tw-flex-row-end {
+    @apply flex flex-row items-center justify-end;
+  }
+  .tw-flex-col-center {
+    @apply flex flex-col items-center;
+  }
+  .tw-flex-col-start {
+    @apply flex flex-col items-start;
+  }
+}

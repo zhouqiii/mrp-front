@@ -10,10 +10,16 @@ import config from '@/config/index' // 全局配置
 import { reqIsSucceed } from '@/utils'
 import { useMessage } from '@/hooks/useMessage' // 全局提示
 import OneButton from '@/components/Button/index.vue'
-import SvgIcon from '@/components/Icon/index.vue'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 import './index.css'
 //svg插件需要配置代码
 import 'virtual:svg-icons-register'
+
+import vue3TreeOrg from 'vue3-tree-org'
+import 'vue3-tree-org/lib/vue3-tree-org.css'
+
+// 根据屏幕大小动态设置根元素font-size
+import '@/utils/rem'
 /**
  * 手动引入组件注册
  * 如果在意unplugin-vue-components插件的自动引入性能问题，可以考虑该方式
@@ -46,6 +52,7 @@ import {
   Table as AntdTable,
   Drawer,
   Switch,
+  Flex,
 } from 'ant-design-vue'
 
 import { createApp } from 'vue'
@@ -54,6 +61,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import { router } from './router'
 import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper'
+import './twclass.ts'
 const icons: any = Icons
 let instance: any = null
 const { createMessage } = useMessage()
@@ -65,7 +73,7 @@ function render(props: any = {}) {
   instance.config.globalProperties.reqIsSucceed = reqIsSucceed
   instance.config.globalProperties.createMessage = createMessage
   instance.use(router)
-  instance.component('Modal', NewModal)
+  instance.component('OneModal', NewModal)
   instance.component('Upload', NewUpload)
   // 自定义组件
   instance.component('OneButton', OneButton)
@@ -74,6 +82,7 @@ function render(props: any = {}) {
   for (let i in icons) {
     instance.component(i, icons[i])
   }
+  instance.use(vue3TreeOrg)
   instance
     .use(createPinia())
     .use(Checkbox)
@@ -103,6 +112,7 @@ function render(props: any = {}) {
     .use(Upload)
     .use(Drawer)
     .use(Switch)
+    .use(Flex)
   instance?.mount(container ? container.querySelector('#base') : '#base')
 }
 renderWithQiankun({

@@ -13,7 +13,7 @@
       :parameter="{ filePath: '' }"
       ref="tableRef"
     />
-    <Modal v-bind="modalState" @cancel="handleCancel" @ok="handleOk">
+    <OneModal v-bind="modalState" @cancel="handleCancel" @ok="handleOk">
       <a-form
         ref="FormRef"
         :model="formModel"
@@ -38,7 +38,7 @@
           />
         </a-form-item>
       </a-form>
-    </Modal>
+    </OneModal>
   </div>
 </template>
 <script setup lang="ts">

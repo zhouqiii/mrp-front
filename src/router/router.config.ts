@@ -33,6 +33,17 @@ export const accessRoutes: RouteRecordRaw[] = [
         },
       },
       {
+        path: '/screen',
+        name: 'screen',
+        component: () => import('@/views/mocklargescreen/entry.vue'),
+        meta: {
+          title: '一个入口',
+          icon: 'DollarOutlined',
+          auth: ['screen'],
+          keepAlive: false,
+        },
+      },
+      {
         path: '/departure',
         name: 'departure',
         meta: {
@@ -136,6 +147,28 @@ export const accessRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/inventory/index.vue'),
       },
     ],
+  },
+  {
+    path: '/screenshow',
+    name: 'screenshow',
+    component: () => import('@/views/mocklargescreen/plan.vue'),
+    meta: {
+      title: '大屏展示',
+      icon: 'DollarOutlined',
+      auth: ['screenshow'],
+      keepAlive: false,
+    },
+  },
+  {
+    path: '/screenfuncshow',
+    name: 'screenfuncshow',
+    component: () => import('@/views/mocklargescreen/category.vue'),
+    meta: {
+      title: '大屏展示',
+      icon: 'DollarOutlined',
+      auth: ['screenshow'],
+      keepAlive: false,
+    },
   },
 ]
 

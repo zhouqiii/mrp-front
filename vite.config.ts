@@ -7,6 +7,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 // import vueDevTools from 'vite-plugin-vue-devtools'
 import qiankun from 'vite-plugin-qiankun'
+import legacyPlugin from '@vitejs/plugin-legacy'
 const packName = require('./package').name
 import proxy from './config/vite/proxy'
 import { VITE_PORT } from './config/constant'
@@ -24,7 +25,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
-    base: process.env.NODE_ENV === 'production' ? '/zqiiidemo/micro/zqiiihtml/' : '/', // 这个要与主应用的micro-app.js中activeRule一致
+    base: process.env.NODE_ENV === 'production' ? '/zqiiihtml/' : '/', // 这个要与主应用的micro-app.js中activeRule一致
     // plugins
     plugins: [
       vue(),
@@ -32,6 +33,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       // vueDevTools(),
       qiankun(`${packName}`, {
         useDevMode: true,
+      }),
+      legacyPlugin({
+        // 如果不设置targets，默认值为'last 2 versions and not dead, > 0.3%, Firefox ESR'
+        // 需要兼容的目标列表，可以设置多个
+        targets: ['chrome 52'],
       }),
       AutoImport({
         imports: ['vue', 'vue-router'],

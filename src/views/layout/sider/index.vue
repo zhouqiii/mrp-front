@@ -2,8 +2,6 @@
   <a-layout-sider
     width="200"
     :style="{
-      overflow: 'auto',
-      height: '100vh',
       position: 'fixed',
       left: 0,
       top: '50px',
@@ -18,7 +16,12 @@
       @select="onSelect"
       theme="dark"
       mode="inline"
-      :style="{ height: '100%', borderRight: 0 }"
+      :style="{
+        overflow: 'auto',
+        height: 'calc(100vh - 90px)',
+        borderRight: 0,
+        paddingBottom: '24px',
+      }"
       class="menu"
     >
       <!--layout sider 折叠隐藏文字是通过.anticon+span实现的-->
@@ -107,7 +110,7 @@ useEventListener('resize', () => {
   width: 100%;
   position: absolute;
   left: 0;
-  bottom: 40px;
+  bottom: 0px;
   height: 40px;
   padding: 0 16px;
   display: flex;

@@ -10,7 +10,7 @@ const propsData = withDefaults(
     name: '',
     width: '1em',
     height: '1em',
-    color: '',
+    color: '#1677ff',
   },
 )
 </script>
@@ -18,6 +18,6 @@ const propsData = withDefaults(
 svg {
   vertical-align: middle;
   /* 将svg 的fill 属性设置成currentColor后，就会根据父级的color属性来改变颜色*/
-  fill: currentColor;
+  // fill: currentColor;
 }
 </style>

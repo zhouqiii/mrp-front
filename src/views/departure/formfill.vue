@@ -1,12 +1,18 @@
 <template>
   <div class="tableSetting">
-    <div class="header">
-      <div class="btns">
-        <one-button type="success" @click="addModel">添加</one-button>
+    <div class="h-12 mb-[24px] tw-flex-row-between">
+      <div class="tw-flex-row-start">
+        <one-button class="mr-4" type="success" @click="addModel">添加</one-button>
         <one-button type="primary" @click="handleSubmit">提交</one-button>
       </div>
       <div class="svg">
-        <a-button type="primary" ghost size="middle" @click="ifDrawer = !ifDrawer">
+        <a-button
+          class="tw-flex-row-center"
+          type="primary"
+          ghost
+          size="middle"
+          @click="ifDrawer = !ifDrawer"
+        >
           <template #icon>
             <svg-icon name="setting" width="1.2em" height="1.2em" class="icon" />
           </template>
@@ -25,8 +31,11 @@
       :rowClassName="rowClassName"
     >
       <template #headerCell="{ title, column }">
-        <div v-if="column.dataIndex === pointField" class="filter">
-          <span style="margin-right: 12px">{{ title }}</span>
+        <template v-if="column.key === 'number'">
+          <span class="font-bold"> {{ title }} </span>
+        </template>
+        <div v-if="column.dataIndex === pointField" class="tw-flex-row-start">
+          <span class="mr-[12px] font-bold">{{ title }}</span>
           <a-popconfirm
             overlayClassName="popconfirmstyle"
             ok-text="确定"
@@ -38,7 +47,11 @@
             <template #title></template>
             <template #icon></template>
             <template #description>
-              <a-checkbox-group v-model:value="selectKey" style="width: 100%" class="checkboxs">
+              <a-checkbox-group
+                v-model:value="selectKey"
+                style="width: 100%"
+                class="checkbox flex flex-col justify-start"
+              >
                 <a-checkbox
                   v-for="item in keyItemsEnums"
                   :value="item"
@@ -47,9 +60,7 @@
                 >
               </a-checkbox-group>
             </template>
-            <div :style="{ color: $style.colorBase }">
-              <svg-icon name="sortdown" width="1.2em" height="1.2em" />
-            </div>
+            <svg-icon name="sortdown" width="1.2em" height="1.2em" :color="$style.colorBase" />
           </a-popconfirm>
         </div>
       </template>
@@ -60,7 +71,19 @@
           </template>
           <template v-if="fixedDataIndexEnums.includes(column.dataIndex)">
             <div class="editable-cell">
-              <a-input v-model:value="record[column.dataIndex]" :bordered="false" />
+              <a-input
+                v-model:value="record[column.dataIndex]"
+                :bordered="false"
+                :class="[record[`${column.dataIndex}backup`] ? 'text-[red]' : '']"
+              />
+              <svg-icon
+                name="message"
+                color="#e9c745"
+                width="1.2em"
+                height="1.2em"
+                :class="['icon-message', twSvgClx]"
+                @click="handleCurrentBackUp(column, record)"
+              />
             </div>
           </template>
         </template>
@@ -74,9 +97,22 @@
         ref="tablesetref"
       />
     </div>
+    <a-modal
+      v-bind="modalState"
+      @cancel="handleCancel"
+      @ok="handleOk"
+      :ok-button-props="{ disabled: !formModel.backup }"
+    >
+      <a-form ref="FormRef" :model="formModel" labelAlign="right" :label-col="{ span: 4 }">
+        <a-form-item label="文件类型:" name="type">
+          <a-input v-model:value="formModel.backup" placeholder="请输入备注信息" />
+        </a-form-item>
+      </a-form>
+    </a-modal>
   </div>
 </template>
 <script setup lang="ts">
+import type { FormInstance } from 'ant-design-vue'
 import type { ColumnProps } from 'ant-design-vue/es/table'
 import TableSet from '@/components/TableSet/index.vue'
 import type { IColumns } from '@/components/TableSet/index.vue'
@@ -92,6 +128,12 @@ import {
   pointField,
 } from './constant'
 import type { IData } from '@/views/departure/types'
+interface ICurrent {
+  // flag表格行唯一标识 dataIndex标识change对应的key
+  flag: string
+  dataIndex: string
+}
+const twSvgClx = ref('icon-message absolute right-1 top-1/2 -translate-y-1/2')
 const tablesetref = ref()
 let ifDrawer = ref<boolean>(false)
 
@@ -109,6 +151,10 @@ const selectKey = ref<string[]>([...keyItemsFixEnums]) // 关键项双向绑定�
 const keyItemsList = ref<string[]>([...keyItemsFixEnums]) // 当前关键项
 const keyItemsLength = computed(() => keyItemsList.value.length)
 const dataSource = ref<IData[]>([])
+const FormRef = ref<FormInstance>()
+const formModel = reactive({
+  backup: '',
+})
 
 const fixedColumns = reactive<ColumnProps[]>(
   fixedColumnEnums.map((item: ColumnProps) => ({
@@ -200,6 +246,40 @@ const dataShow = computed(() =>
   dataSource.value.filter((item: IData) => keyItemsList.value.includes(item[pointField])),
 )
 const allColumns = computed(() => columns.value.concat(fixedColumns))
+// 表格cell-备注Modal
+const modalState = reactive({
+  loading: false,
+  visible: false,
+  title: '备注信息',
+  okText: '确定',
+})
+// 备注Modal对应的tabledata flag识别哪一行数据 dataIndex识别改变哪个数据
+let currentRow = reactive<ICurrent>({
+  flag: '',
+  dataIndex: '',
+})
+// 打开备注Modal，缓存当前表格唯一标识(这里用产品型号拼接关键项)和修改的column对应的key
+const handleCurrentBackUp = (column: ColumnProps, row: IData) => {
+  formModel.backup = row[`${column.dataIndex}backup`] || ''
+  modalState.visible = true
+  // 这里用产品型号拼接关键项
+  currentRow.flag = `${row.model}-${row[pointField]}`
+  currentRow.dataIndex = column.dataIndex as string
+}
+// 关闭Modal
+const handleCancel = () => {
+  modalState.visible = false
+  formModel.backup = ''
+}
+// Modal 确定
+const handleOk = () => {
+  dataSource.value.forEach((item: IData) => {
+    if (`${item.model || ''}-${item[pointField] || ''}` == currentRow.flag) {
+      item[`${currentRow.dataIndex}backup`] = formModel.backup
+    }
+  })
+  handleCancel()
+}
 // 监听表格设置的变化，重新给当前表格列赋值；
 watch(
   () => columnsData,
@@ -233,28 +313,16 @@ onMounted(() => getTableSet())
 </script>
 <style module lang="scss" src="@/styles/export.scss"></style>
 <style lang="scss" scoped>
-.header {
-  height: 46px;
-  @include flex-row(space-between);
-  .btns {
-    @include flex-row;
-    button {
-      margin-right: $size-mini-1;
-    }
-  }
-  .svg {
-    button {
-      @include flex-row(center);
-    }
-  }
-}
-.filter {
-  @include flex-row();
-}
 .checkboxs {
-  @include flex-column();
-  ::v-deep label {
+  label {
     line-height: $size-small-1;
   }
+}
+.editable-cell:hover .icon-message {
+  opacity: 1;
+  z-index: 10000;
+}
+.icon-message {
+  opacity: 0;
 }
 </style>

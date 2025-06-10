@@ -6,7 +6,7 @@
 // 应用名
 export const APP_TITLE = 'ZQ-DEMO'
 // 本地服务端口
-export const VITE_PORT = 5173
+export const VITE_PORT = 8080
 
 // api 前缀 作为BASE_URL 这里生产和测试前缀都是/api
 export const API_PREFIX = '/api'
