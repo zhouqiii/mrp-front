@@ -20,6 +20,12 @@ import 'vue3-tree-org/lib/vue3-tree-org.css'
 
 // 根据屏幕大小动态设置根元素font-size
 import '@/utils/rem'
+
+// element-plus
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+// icon
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 /**
  * 手动引入组件注册
  * 如果在意unplugin-vue-components插件的自动引入性能问题，可以考虑该方式
@@ -81,6 +87,10 @@ function render(props: any = {}) {
 
   for (let i in icons) {
     instance.component(i, icons[i])
+  }
+  instance.use(ElementPlus)
+  for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+    instance.component(key, component)
   }
   instance.use(vue3TreeOrg)
   instance

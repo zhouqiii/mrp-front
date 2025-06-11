@@ -146,6 +146,17 @@ export const accessRoutes: RouteRecordRaw[] = [
         },
         component: () => import('@/views/inventory/index.vue'),
       },
+      {
+        path: '/tags-dual-purpose',
+        name: 'tagsdualpurpose',
+        component: () => import('@/views/tagsscroll/index.vue'),
+        meta: {
+          title: '滚动tags',
+          icon: 'DollarOutlined',
+          auth: ['tags'],
+          keepAlive: false,
+        },
+      },
     ],
   },
   {
