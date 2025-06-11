@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-tooltip :content="contentText" :disabled="isDisabledTooltip" placement="top">
-      <div class="content" @mouseover="onMouseOver($event)">
+      <div class="text-line" @mouseover="onMouseOver($event)">
         {{ contentText }}
       </div>
     </el-tooltip>
@@ -20,7 +20,7 @@ const onMouseOver = (e: any) => {
 }
 </script>
 <style lang="scss" scoped>
-.content {
+.text-line {
   font-size: 14px;
   color: #161e2e;
   height: 32px;

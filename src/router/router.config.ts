@@ -157,6 +157,17 @@ export const accessRoutes: RouteRecordRaw[] = [
           keepAlive: false,
         },
       },
+      {
+        path: '/test-base-function',
+        name: 'testbasefunction',
+        component: () => import('@/views/base-function/index.vue'),
+        meta: {
+          title: '基本功能点',
+          icon: 'DollarOutlined',
+          auth: ['basefunc'],
+          keepAlive: false,
+        },
+      },
     ],
   },
   {
